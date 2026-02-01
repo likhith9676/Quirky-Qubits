@@ -5,102 +5,1580 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QuirkyQubits | Enterprise Quantum Compute</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #05070a; }
-    .glass { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
-    .gradient-text { background: linear-gradient(90deg, #22d3ee, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body { 
+      font-family: 'Space Grotesk', 'Inter', sans-serif; 
+      background: #000000;
+      overflow-x: hidden;
+      color: #ffffff;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+    }
+    
+    /* Premium Glass Morphism */
+    .glass { 
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 
+        0 8px 32px 0 rgba(0, 0, 0, 0.37),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Advanced Gradient Text */
+    .gradient-text { 
+      background: linear-gradient(135deg, #00f5ff 0%, #00d4ff 25%, #a855f7 50%, #ec4899 75%, #fbbf24 100%);
+      background-size: 200% 200%;
+      animation: gradient-shift 8s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+    
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    /* Premium Glow Effects */
+    .glow-cyan {
+      box-shadow: 
+        0 0 20px rgba(0, 245, 255, 0.3),
+        0 0 40px rgba(0, 245, 255, 0.2),
+        0 0 60px rgba(0, 245, 255, 0.1);
+    }
+    
+    .glow-purple {
+      box-shadow: 
+        0 0 20px rgba(168, 85, 247, 0.3),
+        0 0 40px rgba(168, 85, 247, 0.2),
+        0 0 60px rgba(168, 85, 247, 0.1);
+    }
+    
+    /* Smooth Animations */
+    * {
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Modern Card Hover */
+    .modern-card {
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .modern-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(135deg, #00f5ff, #a855f7, #ec4899);
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.6s;
+      z-index: -1;
+      filter: blur(20px);
+    }
+    
+    .modern-card:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+    
+    .modern-card:hover::before {
+      opacity: 0.6;
+    }
+    
+    /* Cinematic Background */
+    .cinematic-bg {
+      background: radial-gradient(ellipse at top, #001a33 0%, #000000 50%);
+      position: relative;
+    }
+    
+    .cinematic-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 245, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    /* Advanced Button */
+    .premium-button {
+      position: relative;
+      overflow: hidden;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.875rem;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .premium-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .premium-button:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .premium-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px rgba(0, 245, 255, 0.3);
+    }
+    
+    /* Neural Network Lines */
+    .neural-line {
+      stroke: url(#neural-gradient);
+      stroke-width: 1;
+      fill: none;
+      opacity: 0.4;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: draw-line 4s ease-out forwards;
+    }
+    
+    @keyframes draw-line {
+      to { stroke-dashoffset: 0; }
+    }
+    
+    /* Particle System Enhancement */
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.8;
+    }
+    
+    /* Content above particles */
+    .content-layer {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Premium Quantum Orb */
+    .quantum-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0;
+      transition: opacity 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+      will-change: transform;
+    }
+    
+    .quantum-orb.visible {
+      opacity: 0.4;
+    }
+    
+    /* Scroll Animations */
+    .scroll-fade {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1), 
+                  transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .scroll-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Advanced Floating */
+    @keyframes float-premium {
+      0%, 100% { 
+        transform: translateY(0px) rotate(0deg);
+      }
+      33% { 
+        transform: translateY(-20px) rotate(2deg);
+      }
+      66% { 
+        transform: translateY(-10px) rotate(-2deg);
+      }
+    }
+    
+    .floating {
+      animation: float-premium 8s ease-in-out infinite;
+    }
+    
+    /* Mesh Gradient Background */
+    .mesh-gradient {
+      background: 
+        radial-gradient(at 0% 0%, rgba(0, 245, 255, 0.2) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.2) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.2) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(251, 191, 36, 0.2) 0px, transparent 50%),
+        #000000;
+      background-size: 400% 400%;
+      animation: mesh-move 15s ease infinite;
+    }
+    
+    @keyframes mesh-move {
+      0%, 100% { background-position: 0% 0%; }
+      25% { background-position: 100% 0%; }
+      50% { background-position: 100% 100%; }
+      75% { background-position: 0% 100%; }
+    }
+    
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    /* Code Block Styling */
+    pre {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(0, 0, 0, 0.6);
+      border-left: 3px solid #00f5ff;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      overflow-x: auto;
+      line-height: 1.8;
+    }
+    
+    code {
+      color: #00f5ff;
+    }
+    
+    /* Ultra-Modern Qubit Design */
+    #quantum-qubit {
+      position: fixed;
+      width: 180px;
+      height: 180px;
+      z-index: 9999;
+      pointer-events: auto;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      filter: drop-shadow(0 0 40px rgba(0, 245, 255, 0.6));
+    }
+    
+    #quantum-qubit.draggable {
+      cursor: grab;
+    }
+    
+    #quantum-qubit.dragging {
+      cursor: grabbing;
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 60px rgba(0, 245, 255, 0.9));
+    }
+    
+    #quantum-qubit.clickable {
+      cursor: pointer;
+      animation: qubit-pulse-premium 3s ease-in-out infinite;
+    }
+    
+    @keyframes qubit-pulse-premium {
+      0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 40px rgba(0, 245, 255, 0.6));
+      }
+      50% { 
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 80px rgba(168, 85, 247, 0.8));
+      }
+    }
+    
+    .qubit-ring {
+      position: absolute;
+      border: 2px solid;
+      border-radius: 50%;
+      opacity: 0.8;
+      box-shadow: 0 0 20px currentColor;
+    }
+    
+    .qubit-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00f5ff, #a855f7, #ec4899);
+      background-size: 200% 200%;
+      animation: gradient-shift 4s ease infinite;
+      box-shadow: 
+        0 0 30px rgba(0, 245, 255, 0.8),
+        0 0 60px rgba(168, 85, 247, 0.5),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    
+    .qubit-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 32px;
+      font-weight: 800;
+      color: white;
+      text-shadow: 
+        0 0 20px rgba(0, 245, 255, 1),
+        0 0 40px rgba(0, 245, 255, 0.5);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.05em;
+    }
+    
+    /* Premium End Zone */
+    #end-zone {
+      min-height: 100vh;
+      background: 
+        radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 30% 70%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+        #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    #end-zone::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: 
+        repeating-linear-gradient(0deg, rgba(0, 245, 255, 0.03) 0px, transparent 2px, transparent 4px),
+        repeating-linear-gradient(90deg, rgba(168, 85, 247, 0.03) 0px, transparent 2px, transparent 4px);
+      animation: grid-drift 30s linear infinite;
+    }
+    
+    @keyframes grid-drift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+    
+    .end-zone-content {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px) scale(0.95);
+      transition: opacity 1.5s cubic-bezier(0.23, 1, 0.32, 1), 
+                  transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .end-zone-content.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    
+    /* Liquid Gradient Animation */
+    @keyframes liquid-flow {
+      0%, 100% { 
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transform: rotate(0deg);
+      }
+      25% { 
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+      }
+      50% { 
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transform: rotate(180deg);
+      }
+      75% { 
+        border-radius: 50% 60% 30% 40% / 30% 60% 40% 70%;
+      }
+    }
+    
+    /* Morphing Blob */
+    .morphing-blob {
+      position: absolute;
+      background: linear-gradient(135deg, #00f5ff, #a855f7);
+      filter: blur(60px);
+      opacity: 0.3;
+      animation: liquid-flow 20s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    /* 3D Card Perspective */
+    .card-3d {
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+    
+    .card-3d-inner {
+      position: relative;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+    }
+    
+    .card-3d:hover .card-3d-inner {
+      transform: rotateY(5deg) rotateX(5deg);
+    }
+    
+    /* Neon Border Animation */
+    @keyframes neon-pulse {
+      0%, 100% {
+        box-shadow: 
+          0 0 5px rgba(0, 245, 255, 0.5),
+          0 0 10px rgba(0, 245, 255, 0.4),
+          0 0 20px rgba(0, 245, 255, 0.3),
+          0 0 40px rgba(168, 85, 247, 0.2);
+      }
+      50% {
+        box-shadow: 
+          0 0 10px rgba(0, 245, 255, 0.8),
+          0 0 20px rgba(0, 245, 255, 0.6),
+          0 0 40px rgba(0, 245, 255, 0.4),
+          0 0 80px rgba(168, 85, 247, 0.3);
+      }
+    }
+    
+    .neon-border {
+      border: 1px solid rgba(0, 245, 255, 0.3);
+      animation: neon-pulse 3s ease-in-out infinite;
+    }
+    
+    /* Spotlight Effect */
+    .spotlight {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 245, 255, 0.15), transparent 70%);
+      pointer-events: none;
+      transition: transform 0.3s ease;
+      border-radius: 50%;
+      filter: blur(40px);
+    }
+    
+    /* Premium Navigation */
+    nav {
+      backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(0, 0, 0, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    nav a {
+      position: relative;
+      transition: color 0.3s;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #00f5ff, #a855f7);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Cosmic Dust Particles */
+    .cosmic-dust {
+      position: fixed;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      animation: cosmic-float 10s linear infinite;
+    }
+    
+    @keyframes cosmic-float {
+      0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0);
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100vh) translateX(var(--drift, 50px));
+      }
+    }
+    
+    /* Interactive Grid */
+    .interactive-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .grid-cell {
+      stroke: rgba(0, 245, 255, 0.1);
+      stroke-width: 0.5;
+      fill: none;
+      transition: all 0.3s;
+    }
+    
+    .grid-cell.active {
+      stroke: rgba(0, 245, 255, 0.6);
+      fill: rgba(0, 245, 255, 0.05);
+    }
+    
+    /* Holographic Effect */
+    .holographic {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .holographic::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(0, 245, 255, 0.1) 50%,
+        transparent 70%
+      );
+      transform: rotate(45deg);
+      animation: holographic-sweep 3s linear infinite;
+    }
+    
+    @keyframes holographic-sweep {
+      0% {
+        transform: translateX(-100%) rotate(45deg);
+      }
+      100% {
+        transform: translateX(100%) rotate(45deg);
+      }
+    }
+    
+    /* Data Stream Visualization */
+    .data-stream {
+      position: fixed;
+      width: 1px;
+      height: 100vh;
+      background: linear-gradient(to bottom, transparent, #00f5ff, transparent);
+      opacity: 0.3;
+      pointer-events: none;
+      animation: data-flow 3s linear infinite;
+    }
+    
+    @keyframes data-flow {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(100%);
+      }
+    }
+    
+    /* Quantum Ripple Effect */
+    .quantum-ripple {
+      position: absolute;
+      border: 2px solid rgba(0, 245, 255, 0.6);
+      border-radius: 50%;
+      animation: ripple-expand 2s ease-out;
+      pointer-events: none;
+    }
+    
+    @keyframes ripple-expand {
+      0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+      }
+      100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+      }
+    }
+    
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    /* Loading Shimmer */
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+    
+    .shimmer {
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      background-size: 1000px 100%;
+      animation: shimmer 2s infinite;
+    }
+    
+    /* Particle canvas */
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    /* Content above particles */
+    .content-layer {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Quantum orb animation */
+    .quantum-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0;
+      transition: opacity 1s ease-out;
+    }
+    
+    .quantum-orb.visible {
+      opacity: 0.3;
+    }
+    
+    /* Scroll fade-in animations */
+    .scroll-fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    
+    .scroll-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    /* Pulse animation */
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(34, 211, 238, 0.6); }
+    }
+    
+    .pulse-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    
+    /* Circuit line animation */
+    .circuit-line {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      transition: stroke-dashoffset 2s ease-out;
+    }
+    
+    .circuit-line.animate {
+      stroke-dashoffset: 0;
+    }
+    
+    /* Quantum Qubit */
+    #quantum-qubit {
+      position: fixed;
+      width: 120px;
+      height: 120px;
+      z-index: 9999;
+      pointer-events: auto;
+      transition: all 0.3s ease;
+    }
+    
+    #quantum-qubit.draggable {
+      cursor: grab;
+    }
+    
+    #quantum-qubit.dragging {
+      cursor: grabbing;
+      transform: scale(1.1);
+    }
+    
+    #quantum-qubit.clickable {
+      cursor: pointer;
+      animation: qubit-pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes qubit-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .qubit-ring {
+      position: absolute;
+      border: 3px solid;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+    
+    .qubit-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #22d3ee, #a855f7);
+      box-shadow: 0 0 30px rgba(34, 211, 238, 0.8);
+    }
+    
+    .qubit-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      transition: all 0.5s ease;
+    }
+    
+    /* End Zone */
+    #end-zone {
+      min-height: 100vh;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .end-zone-content {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .end-zone-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    @keyframes float-gentle {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    /* Quantum Tunnel Effect */
+    .quantum-tunnel {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    
+    .quantum-tunnel.active {
+      opacity: 1;
+    }
+    
+    /* Reality Glitch */
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+    
+    .glitch-effect {
+      animation: glitch 0.3s;
+    }
+    
+    /* Constellation Lines */
+    .constellation-line {
+      stroke: #22d3ee;
+      stroke-width: 1;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    
+    .constellation-mode .constellation-line {
+      opacity: 0.4;
+    }
+    
+    /* Qubit Trail */
+    .qubit-trail {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #22d3ee, transparent);
+      pointer-events: none;
+      z-index: 9997;
+      animation: trail-fade 1s ease-out forwards;
+    }
+    
+    @keyframes trail-fade {
+      0% { opacity: 0.8; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.3); }
+    }
+    
+    /* Quantum Entanglement Effect */
+    .entangled-particle {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9996;
+    }
+    
+    /* Secret Achievement Badge */
+    .achievement {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 20px;
+      font-weight: 700;
+      z-index: 10001;
+      box-shadow: 0 10px 40px rgba(251, 191, 36, 0.4);
+      transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    .achievement.show {
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    /* Quantum Portal */
+    .quantum-portal {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, transparent 30%, #22d3ee 31%, transparent 32%, #a855f7 60%, transparent 61%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9995;
+      animation: portal-spin 4s linear infinite;
+      transition: opacity 0.5s;
+    }
+    
+    @keyframes portal-spin {
+      from { transform: translate(-50%, -50%) rotate(0deg) scale(0.8); }
+      to { transform: translate(-50%, -50%) rotate(360deg) scale(1.2); }
+    }
+    
+    .quantum-portal.active {
+      opacity: 0.6;
+    }
+    
+    /* 3D Parallax Layers */
+    .parallax-layer {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      transition: transform 0.1s ease-out;
+    }
+    
+    /* Quantum Field Visualization */
+    #quantum-field {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.15;
+    }
+    
+    /* DNA Helix Effect */
+    .dna-strand {
+      position: fixed;
+      width: 4px;
+      height: 100vh;
+      background: linear-gradient(to bottom, transparent, #22d3ee, transparent);
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.3;
+    }
+    
+    /* Matrix Rain Effect */
+    #matrix-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    
+    #matrix-rain.active {
+      opacity: 0.4;
+    }
+    
+    /* Geometric Shapes */
+    .geometric-shape {
+      position: fixed;
+      border: 2px solid;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0.2;
+      animation: float-rotate 20s ease-in-out infinite;
+    }
+    
+    @keyframes float-rotate {
+      0%, 100% { 
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.2;
+      }
+      25% { 
+        transform: translate(50px, -30px) rotate(90deg);
+        opacity: 0.4;
+      }
+      50% { 
+        transform: translate(0, -60px) rotate(180deg);
+        opacity: 0.2;
+      }
+      75% { 
+        transform: translate(-50px, -30px) rotate(270deg);
+        opacity: 0.4;
+      }
+    }
+    
+    /* Energy Waves */
+    .energy-wave {
+      position: fixed;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #22d3ee, transparent);
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0;
+      animation: wave-pulse 3s ease-in-out infinite;
+    }
+    
+    @keyframes wave-pulse {
+      0%, 100% { 
+        opacity: 0;
+        transform: scaleX(0.5);
+      }
+      50% { 
+        opacity: 0.6;
+        transform: scaleX(1);
+      }
+    }
+    
+    /* Holographic Grid */
+    #holographic-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.08;
+      background-image: 
+        linear-gradient(0deg, transparent 24%, rgba(34, 211, 238, 0.3) 25%, rgba(34, 211, 238, 0.3) 26%, transparent 27%, transparent 74%, rgba(34, 211, 238, 0.3) 75%, rgba(34, 211, 238, 0.3) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(168, 85, 247, 0.3) 25%, rgba(168, 85, 247, 0.3) 26%, transparent 27%, transparent 74%, rgba(168, 85, 247, 0.3) 75%, rgba(168, 85, 247, 0.3) 76%, transparent 77%, transparent);
+      background-size: 100px 100px;
+      animation: grid-scroll 20s linear infinite;
+    }
+    
+    @keyframes grid-scroll {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
+    }
+    
+    /* Particle Explosion */
+    .explosion-particle {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      animation: explode 1s ease-out forwards;
+    }
+    
+    @keyframes explode {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(0);
+      }
+    }
+    
+    /* Nebula Effect */
+    .nebula {
+      position: fixed;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.2), transparent 70%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: nebula-drift 30s ease-in-out infinite;
+    }
+    
+    @keyframes nebula-drift {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(200px, -100px); }
+      66% { transform: translate(-200px, 100px); }
+    }
+    
+    /* Scan Lines */
+    .scan-lines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9998;
+      background: linear-gradient(
+        transparent 50%,
+        rgba(34, 211, 238, 0.03) 50%
+      );
+      background-size: 100% 4px;
+      animation: scan 8s linear infinite;
+      opacity: 0;
+    }
+    
+    .scan-lines.active {
+      opacity: 1;
+    }
+    
+    @keyframes scan {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(4px); }
+    }
+    
+    /* Qubit background layer */
+    #qubit-background {
+      position: fixed;
+      width: 120px;
+      height: 120px;
+      z-index: 0;
+      opacity: 0.3;
+      filter: blur(20px);
+      pointer-events: none;
+    }
+    
+    /* Wormhole effect */
+    #wormhole {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+    
+    #wormhole.active {
+      opacity: 1;
+    }
   </style>
 </head>
 <body class="text-gray-200">
 
+<!-- Particle Canvas -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- Quantum Field Visualization -->
+<canvas id="quantum-field"></canvas>
+
+<!-- Holographic Grid -->
+<div id="holographic-grid"></div>
+
+<!-- Matrix Rain -->
+<canvas id="matrix-rain"></canvas>
+
+<!-- Wormhole Effect -->
+<canvas id="wormhole"></canvas>
+
+<!-- Scan Lines -->
+<div class="scan-lines"></div>
+
+<!-- Parallax Layers -->
+<div class="parallax-layer" data-depth="0.2" id="parallax-1"></div>
+<div class="parallax-layer" data-depth="0.4" id="parallax-2"></div>
+<div class="parallax-layer" data-depth="0.6" id="parallax-3"></div>
+
+<!-- DNA Strands -->
+<div class="dna-strand" style="left: 20%; animation: float-rotate 15s ease-in-out infinite;"></div>
+<div class="dna-strand" style="left: 80%; animation: float-rotate 18s ease-in-out infinite reverse;"></div>
+
+<!-- Nebula Effects -->
+<div class="nebula" style="top: 10%; left: 10%;"></div>
+<div class="nebula" style="bottom: 10%; right: 10%; background: radial-gradient(circle, rgba(168, 85, 247, 0.2), transparent 70%);"></div>
+
+<!-- Energy Waves -->
+<div class="energy-wave" style="top: 25%; animation-delay: 0s;"></div>
+<div class="energy-wave" style="top: 50%; animation-delay: 1s; background: linear-gradient(90deg, transparent, #a855f7, transparent);"></div>
+<div class="energy-wave" style="top: 75%; animation-delay: 2s;"></div>
+
+<!-- Geometric Shapes -->
+<div class="geometric-shape" style="width: 100px; height: 100px; border-color: #22d3ee; top: 15%; left: 10%; border-radius: 50%;"></div>
+<div class="geometric-shape" style="width: 80px; height: 80px; border-color: #a855f7; top: 60%; right: 15%; animation-duration: 25s;"></div>
+<div class="geometric-shape" style="width: 120px; height: 120px; border-color: #22d3ee; bottom: 20%; left: 20%; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); animation-duration: 30s;"></div>
+<div class="geometric-shape" style="width: 90px; height: 90px; border-color: #a855f7; top: 40%; right: 25%; clip-path: polygon(50% 0%, 100% 100%, 0% 100%); animation-duration: 22s;"></div>
+
+<!-- Qubit Background Copy -->
+<div id="qubit-background">
+  <svg width="120" height="120" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="55" fill="none" stroke="#22d3ee" stroke-width="2">
+      <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="60" cy="60" r="45" fill="none" stroke="#a855f7" stroke-width="2">
+      <animateTransform attributeName="transform" type="rotate" from="360 60 60" to="0 60 60" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="60" cy="60" r="20" fill="url(#qubit-gradient-bg)"/>
+    <defs>
+      <linearGradient id="qubit-gradient-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#22d3ee;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+
+<!-- Quantum Qubit -->
+<div id="quantum-qubit">
+  <svg width="120" height="120" viewBox="0 0 120 120">
+    <!-- Outer ring -->
+    <circle class="qubit-ring" cx="60" cy="60" r="55" fill="none" stroke="#22d3ee" stroke-width="2">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0 60 60"
+        to="360 60 60"
+        dur="8s"
+        repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Middle ring -->
+    <circle class="qubit-ring" cx="60" cy="60" r="45" fill="none" stroke="#a855f7" stroke-width="2">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="360 60 60"
+        to="0 60 60"
+        dur="6s"
+        repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Inner ring -->
+    <circle class="qubit-ring" cx="60" cy="60" r="35" fill="none" stroke="#22d3ee" stroke-width="1.5">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0 60 60"
+        to="360 60 60"
+        dur="4s"
+        repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Core glow -->
+    <circle cx="60" cy="60" r="20" fill="url(#qubit-gradient)" filter="url(#glow)"/>
+    
+    <defs>
+      <linearGradient id="qubit-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#22d3ee;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+      </linearGradient>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
+  <div class="qubit-label" id="qubit-label">0</div>
+</div>
+
+<!-- Quantum Tunnel Effect -->
+<canvas id="quantum-tunnel" class="quantum-tunnel"></canvas>
+
+<!-- Quantum Portal -->
+<div id="quantum-portal" class="quantum-portal"></div>
+
+<!-- Constellation Canvas -->
+<svg id="constellation-svg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999;">
+  <!-- Dynamic constellation lines will be added here -->
+</svg>
+
+<!-- Content Layer -->
+<div class="content-layer">
+
 <!-- NAV -->
-<nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-  <div class="flex items-center gap-3">
-    <!-- Logo -->
-    <img src="/logo.png" alt="QuirkyQubits Logo" class="h-9 w-9 object-contain" />
-    <span class="text-2xl font-bold gradient-text">QuirkyQubits Cloud</span>
+<nav class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+  <div class="flex items-center gap-4">
+    <div class="relative">
+      <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-xl glow-cyan">
+        Q
+      </div>
+      <div class="absolute inset-0 h-12 w-12 rounded-2xl bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 blur-xl opacity-50 animate-pulse"></div>
+    </div>
+    <span class="text-3xl font-bold gradient-text">QuirkyQubits</span>
   </div>
-  <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-    <a href="#platform" class="hover:text-cyan-400">Platform</a>
-    <a href="#architecture" class="hover:text-cyan-400">Architecture</a>
-    <a href="#security" class="hover:text-cyan-400">Security</a>
-    <a href="#pricing" class="hover:text-cyan-400">Pricing</a>
-    <button class="bg-cyan-500 text-black px-5 py-2 rounded-md font-semibold">Console</button>
+  <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+    <a href="#platform" class="text-gray-300 hover:text-cyan-400 transition-all duration-300">Platform</a>
+    <a href="#architecture" class="text-gray-300 hover:text-cyan-400 transition-all duration-300">Architecture</a>
+    <a href="#security" class="text-gray-300 hover:text-cyan-400 transition-all duration-300">Security</a>
+    <a href="#pricing" class="text-gray-300 hover:text-cyan-400 transition-all duration-300">Pricing</a>
+    <button class="premium-button bg-gradient-to-r from-cyan-500 to-purple-500 text-white relative z-10">
+      Launch Console
+    </button>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="max-w-7xl mx-auto px-6 py-32 grid md:grid-cols-2 gap-16 items-center">
-  <div>
-    <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
-      Enterprise‑grade <span class="gradient-text">Quantum Compute</span>, delivered as Cloud Infrastructure
+<section class="relative max-w-7xl mx-auto px-8 py-40 grid md:grid-cols-2 gap-20 items-center overflow-hidden">
+  <!-- Morphing Blobs -->
+  <div class="morphing-blob" style="width: 600px; height: 600px; top: -200px; left: -200px; background: linear-gradient(135deg, #00f5ff, #a855f7);"></div>
+  <div class="morphing-blob" style="width: 500px; height: 500px; bottom: -150px; right: -150px; background: linear-gradient(135deg, #a855f7, #ec4899); animation-delay: -10s;"></div>
+  
+  <!-- Spotlight Effect -->
+  <div class="spotlight" id="hero-spotlight"></div>
+  
+  <div class="scroll-fade relative z-10">
+    <div class="inline-block px-4 py-2 rounded-full glass mb-6 neon-border">
+      <span class="text-sm font-semibold gradient-text">● LIVE</span>
+      <span class="text-sm text-gray-400 ml-2">Next-Gen Quantum Infrastructure</span>
+    </div>
+    
+    <h1 class="text-6xl md:text-7xl font-bold leading-[1.1] mb-8">
+      Enterprise‑grade <br/>
+      <span class="gradient-text inline-block mt-2">Quantum Compute</span><br/>
+      <span class="text-5xl md:text-6xl text-gray-300">as Cloud Infrastructure</span>
     </h1>
-    <p class="text-gray-400 text-lg mb-8">
-      Run hybrid quantum–classical workloads using managed simulators and hardware backends with deterministic scheduling, observability, and security controls.
+    
+    <p class="text-gray-400 text-xl mb-10 leading-relaxed max-w-xl">
+      Run hybrid quantum–classical workloads with managed simulators, calibrated QPU access, and deterministic scheduling. Enterprise SLAs included.
     </p>
-    <div class="flex gap-4">
-      <button class="bg-white text-black px-8 py-4 rounded-md font-semibold">Start Free Tier</button>
-      <button class="glass px-8 py-4 rounded-md font-semibold">Read Architecture</button>
+    
+    <div class="flex gap-5">
+      <button class="premium-button bg-gradient-to-r from-cyan-500 to-purple-500 text-white glow-cyan relative z-10">
+        Start Free Tier
+      </button>
+      <button class="premium-button glass text-white hover:border-cyan-400 relative z-10">
+        View Documentation
+      </button>
+    </div>
+    
+    <div class="flex items-center gap-8 mt-12 text-sm">
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+        <span class="text-gray-400">99.9% Uptime SLA</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
+        <span class="text-gray-400">SOC 2 Compliant</span>
+      </div>
     </div>
   </div>
-  <div class="glass rounded-2xl p-8 font-mono text-sm">
-<pre class="text-gray-300"># Submit a circuit to QuirkyQubits Cloud
-from quirkyqubits import Circuit, cloud
+  
+  <div class="scroll-fade card-3d relative z-10">
+    <div class="card-3d-inner glass rounded-3xl p-8 neon-border holographic">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+        <span class="text-xs text-gray-500 ml-auto">quantum_circuit.py</span>
+      </div>
+<pre class="text-gray-300 text-sm"><code><span class="text-purple-400">from</span> quirkyqubits <span class="text-purple-400">import</span> Circuit, cloud
 
-c = Circuit(qubits=4)
-c.entangle(0,1)
-c.entangle(2,3)
+<span class="text-gray-500"># Initialize quantum circuit</span>
+c = Circuit(qubits=<span class="text-cyan-400">4</span>)
+c.entangle(<span class="text-cyan-400">0</span>, <span class="text-cyan-400">1</span>)
+c.entangle(<span class="text-cyan-400">2</span>, <span class="text-cyan-400">3</span>)
 
+<span class="text-gray-500"># Execute on cloud QPU</span>
 job = cloud.submit(
     circuit=c,
-    backend="simulator_xlarge",
-    shots=8192
+    backend=<span class="text-green-400">"simulator_xlarge"</span>,
+    shots=<span class="text-cyan-400">8192</span>
 )
 
-print(job.result())</pre>
+<span class="text-purple-400">print</span>(job.result())</code></pre>
+      <div class="mt-4 flex items-center gap-2 text-xs text-gray-500">
+        <div class="flex items-center gap-1">
+          <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+          <span>Executed in 847ms</span>
+        </div>
+        <div class="mx-2">•</div>
+        <span>4 qubits • 8192 shots</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- PLATFORM -->
-<section id="platform" class="max-w-7xl mx-auto px-6 py-28">
-  <h2 class="text-4xl font-bold mb-16">The Platform</h2>
-  <div class="grid md:grid-cols-3 gap-10">
-    <div class="glass p-8 rounded-xl">
-      <h3 class="text-xl font-semibold mb-3">Managed Quantum Backends</h3>
-      <p class="text-gray-400">High‑fidelity simulators and calibrated QPU access with SLA‑backed availability.</p>
+<section id="platform" class="relative max-w-7xl mx-auto px-8 py-32">
+  <!-- Interactive Grid Background -->
+  <svg class="interactive-grid opacity-20">
+    <!-- Grid lines will be added via JS -->
+  </svg>
+  
+  <div class="text-center mb-20 scroll-fade">
+    <div class="inline-block px-4 py-2 rounded-full glass mb-4 neon-border">
+      <span class="text-sm font-semibold text-cyan-400">⚡ THE PLATFORM</span>
     </div>
-    <div class="glass p-8 rounded-xl">
-      <h3 class="text-xl font-semibold mb-3">Hybrid Execution Engine</h3>
-      <p class="text-gray-400">Orchestrate classical preprocessing and quantum execution within a single workflow.</p>
+    <h2 class="text-5xl md:text-6xl font-bold mb-6 gradient-text">Built for Scale</h2>
+    <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+      Production-ready quantum infrastructure with enterprise features and reliability
+    </p>
+  </div>
+  
+  <div class="grid md:grid-cols-3 gap-8 relative z-10">
+    <div class="modern-card glass p-10 rounded-3xl scroll-fade hover:scale-105 transition-all duration-500">
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mb-6 glow-cyan">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+        </svg>
+      </div>
+      <h3 class="text-2xl font-bold mb-4 text-white">Managed Backends</h3>
+      <p class="text-gray-400 leading-relaxed mb-6">
+        High‑fidelity quantum simulators and calibrated QPU access with guaranteed SLA‑backed availability and performance.
+      </p>
+      <div class="flex items-center text-sm text-cyan-400 font-semibold">
+        <span>Learn more</span>
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </div>
     </div>
-    <div class="glass p-8 rounded-xl">
-      <h3 class="text-xl font-semibold mb-3">Observability & Control</h3>
-      <p class="text-gray-400">Job traces, queue latency metrics, deterministic retries, and audit logs.</p>
+    
+    <div class="modern-card glass p-10 rounded-3xl scroll-fade hover:scale-105 transition-all duration-500" style="transition-delay: 0.1s;">
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mb-6 glow-purple">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+      </div>
+      <h3 class="text-2xl font-bold mb-4 text-white">Hybrid Execution</h3>
+      <p class="text-gray-400 leading-relaxed mb-6">
+        Seamlessly orchestrate classical preprocessing and quantum execution within unified workflow pipelines.
+      </p>
+      <div class="flex items-center text-sm text-purple-400 font-semibold">
+        <span>Explore workflows</span>
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+    
+    <div class="modern-card glass p-10 rounded-3xl scroll-fade hover:scale-105 transition-all duration-500" style="transition-delay: 0.2s;">
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center mb-6" style="box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+        </svg>
+      </div>
+      <h3 class="text-2xl font-bold mb-4 text-white">Full Observability</h3>
+      <p class="text-gray-400 leading-relaxed mb-6">
+        Complete job traces, queue latency metrics, deterministic retries, and comprehensive audit logging.
+      </p>
+      <div class="flex items-center text-sm text-cyan-400 font-semibold">
+        <span>View metrics</span>
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Stats Section -->
+  <div class="grid md:grid-cols-4 gap-6 mt-20 scroll-fade">
+    <div class="glass p-6 rounded-2xl text-center neon-border">
+      <div class="text-4xl font-bold gradient-text mb-2">99.9%</div>
+      <div class="text-sm text-gray-400">Uptime SLA</div>
+    </div>
+    <div class="glass p-6 rounded-2xl text-center neon-border">
+      <div class="text-4xl font-bold gradient-text mb-2">&lt;50ms</div>
+      <div class="text-sm text-gray-400">API Latency</div>
+    </div>
+    <div class="glass p-6 rounded-2xl text-center neon-border">
+      <div class="text-4xl font-bold gradient-text mb-2">10M+</div>
+      <div class="text-sm text-gray-400">Jobs Executed</div>
+    </div>
+    <div class="glass p-6 rounded-2xl text-center neon-border">
+      <div class="text-4xl font-bold gradient-text mb-2">24/7</div>
+      <div class="text-sm text-gray-400">Expert Support</div>
     </div>
   </div>
 </section>
 
 <!-- ARCHITECTURE -->
-<section id="architecture" class="bg-black/40 border-y border-gray-800 py-28">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-4xl font-bold mb-16">Reference Architecture</h2>
-    <div class="grid md:grid-cols-4 gap-8">
-      <div class="glass p-6 rounded-xl">
-        <h4 class="font-semibold mb-2">Client Layer</h4>
-        <p class="text-sm text-gray-400">Python / JS SDKs, REST & gRPC APIs, circuit validation.</p>
+<section id="architecture" class="relative border-y border-gray-800/50 py-32 overflow-hidden mesh-gradient">
+  <!-- Data Streams -->
+  <div class="data-stream" style="left: 10%;"></div>
+  <div class="data-stream" style="left: 30%; animation-delay: 1s;"></div>
+  <div class="data-stream" style="left: 50%; animation-delay: 2s;"></div>
+  <div class="data-stream" style="left: 70%; animation-delay: 1.5s;"></div>
+  <div class="data-stream" style="left: 90%; animation-delay: 0.5s;"></div>
+  
+  <div class="max-w-7xl mx-auto px-8 relative z-10">
+    <div class="text-center mb-20 scroll-fade">
+      <div class="inline-block px-4 py-2 rounded-full glass mb-4 neon-border">
+        <span class="text-sm font-semibold text-purple-400">🏗️ ARCHITECTURE</span>
       </div>
-      <div class="glass p-6 rounded-xl">
-        <h4 class="font-semibold mb-2">API & Auth</h4>
-        <p class="text-sm text-gray-400">OAuth2, workload isolation, rate‑limiting, request signing.</p>
+      <h2 class="text-5xl md:text-6xl font-bold mb-6">
+        <span class="gradient-text">Cloud-Native</span> by Design
+      </h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+        Distributed microservices architecture built for reliability and scale
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="modern-card glass p-8 rounded-3xl scroll-fade group hover:scale-105 transition-all duration-500">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 flex items-center justify-center border border-cyan-500/30">
+            <span class="text-2xl">📱</span>
+          </div>
+          <div class="h-px flex-1 bg-gradient-to-r from-cyan-500/50 to-transparent"></div>
+        </div>
+        <h4 class="text-lg font-bold mb-3 text-white">Client Layer</h4>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          Python & JavaScript SDKs, REST & gRPC APIs with built-in circuit validation and optimization.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-medium">REST</span>
+          <span class="px-2 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-medium">gRPC</span>
+          <span class="px-2 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-medium">WebSocket</span>
+        </div>
       </div>
-      <div class="glass p-6 rounded-xl">
-        <h4 class="font-semibold mb-2">Control Plane</h4>
-        <p class="text-sm text-gray-400">Compilation, transpilation, scheduling, noise mitigation.</p>
+      
+      <div class="modern-card glass p-8 rounded-3xl scroll-fade group hover:scale-105 transition-all duration-500" style="transition-delay: 0.1s;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/20 flex items-center justify-center border border-purple-500/30">
+            <span class="text-2xl">🔐</span>
+          </div>
+          <div class="h-px flex-1 bg-gradient-to-r from-purple-500/50 to-transparent"></div>
+        </div>
+        <h4 class="text-lg font-bold mb-3 text-white">API & Auth</h4>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          OAuth2 authentication, workload isolation, intelligent rate-limiting, and request signing.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded-md bg-purple-500/10 text-purple-400 text-xs font-medium">OAuth2</span>
+          <span class="px-2 py-1 rounded-md bg-purple-500/10 text-purple-400 text-xs font-medium">JWT</span>
+          <span class="px-2 py-1 rounded-md bg-purple-500/10 text-purple-400 text-xs font-medium">mTLS</span>
+        </div>
       </div>
-      <div class="glass p-6 rounded-xl">
-        <h4 class="font-semibold mb-2">Execution Plane</h4>
-        <p class="text-sm text-gray-400">Simulators, QPU providers, adaptive fallback routing.</p>
+      
+      <div class="modern-card glass p-8 rounded-3xl scroll-fade group hover:scale-105 transition-all duration-500" style="transition-delay: 0.2s;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500/20 to-pink-600/20 flex items-center justify-center border border-pink-500/30">
+            <span class="text-2xl">⚙️</span>
+          </div>
+          <div class="h-px flex-1 bg-gradient-to-r from-pink-500/50 to-transparent"></div>
+        </div>
+        <h4 class="text-lg font-bold mb-3 text-white">Control Plane</h4>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          Circuit compilation, transpilation, intelligent scheduling, and noise mitigation algorithms.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded-md bg-pink-500/10 text-pink-400 text-xs font-medium">Compiler</span>
+          <span class="px-2 py-1 rounded-md bg-pink-500/10 text-pink-400 text-xs font-medium">Scheduler</span>
+        </div>
+      </div>
+      
+      <div class="modern-card glass p-8 rounded-3xl scroll-fade group hover:scale-105 transition-all duration-500" style="transition-delay: 0.3s;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-600/20 flex items-center justify-center border border-cyan-500/30">
+            <span class="text-2xl">🚀</span>
+          </div>
+          <div class="h-px flex-1 bg-gradient-to-r from-cyan-500/50 via-purple-500/50 to-transparent"></div>
+        </div>
+        <h4 class="text-lg font-bold mb-3 text-white">Execution Plane</h4>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          High-performance simulators, QPU provider integrations, and adaptive fallback routing.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded-md bg-cyan-500/10 text-cyan-400 text-xs font-medium">Simulator</span>
+          <span class="px-2 py-1 rounded-md bg-purple-500/10 text-purple-400 text-xs font-medium">QPU</span>
+        </div>
       </div>
     </div>
   </div>
@@ -108,17 +1586,17 @@ print(job.result())</pre>
 
 <!-- SECURITY -->
 <section id="security" class="max-w-7xl mx-auto px-6 py-28">
-  <h2 class="text-4xl font-bold mb-16">Security & Isolation</h2>
+  <h2 class="text-4xl font-bold mb-16 scroll-fade">Security & Isolation</h2>
   <div class="grid md:grid-cols-3 gap-10">
-    <div class="glass p-8 rounded-xl">
+    <div class="glass p-8 rounded-xl scroll-fade hover:scale-105 transition-transform">
       <h3 class="font-semibold mb-2">Tenant Isolation</h3>
       <p class="text-gray-400">Dedicated job queues, per‑tenant encryption keys, isolated runtime contexts.</p>
     </div>
-    <div class="glass p-8 rounded-xl">
+    <div class="glass p-8 rounded-xl scroll-fade hover:scale-105 transition-transform" style="transition-delay: 0.1s;">
       <h3 class="font-semibold mb-2">Compliance‑Ready</h3>
       <p class="text-gray-400">SOC‑aligned controls, full audit logging, exportable execution traces.</p>
     </div>
-    <div class="glass p-8 rounded-xl">
+    <div class="glass p-8 rounded-xl scroll-fade hover:scale-105 transition-transform" style="transition-delay: 0.2s;">
       <h3 class="font-semibold mb-2">Secure Networking</h3>
       <p class="text-gray-400">Private endpoints, VPC peering, zero‑trust service boundaries.</p>
     </div>
@@ -126,24 +1604,26 @@ print(job.result())</pre>
 </section>
 
 <!-- EARLY ACCESS -->
-<section class="bg-black/60 border-t border-gray-800 py-28">
-  <div class="max-w-4xl mx-auto px-6 text-center">
-    <h2 class="text-4xl font-bold mb-6">Launching Soon</h2>
-    <p class="text-gray-400 text-lg mb-10">
+<section class="bg-black/60 border-t border-gray-800 py-28 relative">
+  <div class="quantum-orb" id="orb-4" style="width: 600px; height: 600px; background: #a855f7; top: 50%; right: -200px; transform: translateY(-50%);"></div>
+  
+  <div class="max-w-4xl mx-auto px-6 text-center" style="position: relative; z-index: 1;">
+    <h2 class="text-4xl font-bold mb-6 scroll-fade">Launching Soon</h2>
+    <p class="text-gray-400 text-lg mb-10 scroll-fade">
       QuirkyQubits Cloud is currently in private development. Register now to get notified at launch and secure an <span class="text-cyan-400 font-semibold">exclusive 30% lifetime discount</span> on all paid plans.
     </p>
 
-    <div class="glass p-8 rounded-xl max-w-xl mx-auto">
+    <div class="glass p-8 rounded-xl max-w-xl mx-auto scroll-fade">
       <form class="flex flex-col md:flex-row gap-4">
         <input
           type="email"
           placeholder="Enter your work email"
-          class="w-full px-5 py-4 rounded-md bg-black/60 border border-gray-700 text-gray-200 focus:outline-none focus:border-cyan-400"
+          class="w-full px-5 py-4 rounded-md bg-black/60 border border-gray-700 text-gray-200 focus:outline-none focus:border-cyan-400 transition"
           required
         />
         <button
           type="submit"
-          class="bg-cyan-500 text-black px-8 py-4 rounded-md font-semibold hover:bg-cyan-400 transition"
+          class="bg-cyan-500 text-black px-8 py-4 rounded-md font-semibold hover:bg-cyan-400 hover:scale-105 transition-all"
         >
           Join Early Access
         </button>
@@ -158,20 +1638,35 @@ print(job.result())</pre>
 <!-- PRICING -->
 <section id="pricing" class="bg-black/40 border-t border-gray-800 py-28">
   <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-4xl font-bold mb-16">Pricing Model</h2>
+    <h2 class="text-4xl font-bold mb-16 scroll-fade">Pricing Model</h2>
     <div class="grid md:grid-cols-3 gap-10">
-      <div class="glass p-8 rounded-xl">
+      <div class="glass p-8 rounded-xl scroll-fade hover:scale-105 hover:border-cyan-400 transition-all">
         <h3 class="font-semibold mb-2">Free Tier</h3>
         <p class="text-gray-400">Up to 1k simulator shots/day, shared queue.</p>
       </div>
-      <div class="glass p-8 rounded-xl">
+      <div class="glass p-8 rounded-xl scroll-fade hover:scale-105 hover:border-cyan-400 transition-all" style="transition-delay: 0.1s;">
         <h3 class="font-semibold mb-2">On‑Demand</h3>
         <p class="text-gray-400">Pay‑per‑shot pricing with priority scheduling.</p>
       </div>
-      <div class="glass p-8 rounded-xl">
+      <div class="glass p-8 rounded-xl scroll-fade hover:scale-105 hover:border-cyan-400 transition-all" style="transition-delay: 0.2s;">
         <h3 class="font-semibold mb-2">Enterprise</h3>
         <p class="text-gray-400">Reserved capacity, SLAs, private networking.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- END ZONE -->
+<section id="end-zone">
+  <div class="end-zone-content">
+    <div class="gradient-text text-6xl font-bold mb-6" style="animation: float-gentle 4s ease-in-out infinite;">
+      Quantum State Achieved
+    </div>
+    <p class="text-gray-400 text-xl mb-8">
+      Drag the qubit around • Click it for instant answers
+    </p>
+    <div class="text-cyan-400 text-sm">
+      ⬆️ Try moving the qubit with your mouse
     </div>
   </div>
 </section>
@@ -180,6 +1675,1315 @@ print(job.result())</pre>
 <footer class="py-16 text-center text-sm text-gray-600 border-t border-gray-900">
   © 2026 QuirkyQubits Cloud. Built for engineers.
 </footer>
+
+</div>
+
+<script>
+// ===== PARTICLE SYSTEM =====
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = document.body.scrollHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const particles = [];
+const particleCount = 80;
+
+class Particle {
+  constructor() {
+    this.reset();
+    this.y = Math.random() * canvas.height;
+  }
+  
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = -10;
+    this.size = Math.random() * 2 + 1;
+    this.speedY = Math.random() * 0.5 + 0.2;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.opacity = Math.random() * 0.5 + 0.2;
+    this.color = Math.random() > 0.5 ? '#22d3ee' : '#a855f7';
+  }
+  
+  update() {
+    this.y += this.speedY;
+    this.x += this.speedX;
+    
+    if (this.y > canvas.height) {
+      this.reset();
+    }
+    
+    if (this.x < 0 || this.x > canvas.width) {
+      this.speedX *= -1;
+    }
+  }
+  
+  draw() {
+    ctx.fillStyle = this.color;
+    ctx.globalAlpha = this.opacity;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < particleCount; i++) {
+  particles.push(new Particle());
+}
+
+function connectParticles() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < 150) {
+        ctx.strokeStyle = particles[i].color;
+        ctx.globalAlpha = (1 - distance / 150) * 0.2;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  particles.forEach(particle => {
+    particle.update();
+    particle.draw();
+  });
+  
+  connectParticles();
+  
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+// ===== PREMIUM PARTICLE SYSTEM V2 =====
+// Enhanced particle system with better visuals
+class PremiumParticle {
+  constructor() {
+    this.reset();
+    this.y = Math.random() * canvas.height;
+    this.life = Math.random();
+    this.maxLife = 1;
+  }
+  
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = -10;
+    this.size = Math.random() * 3 + 1;
+    this.speedY = Math.random() * 0.8 + 0.3;
+    this.speedX = (Math.random() - 0.5) * 0.8;
+    this.opacity = Math.random() * 0.6 + 0.4;
+    this.hue = Math.random() > 0.5 ? 180 : 270; // Cyan or Purple
+    this.life = 0;
+  }
+  
+  update() {
+    this.y += this.speedY;
+    this.x += this.speedX;
+    this.life += 0.01;
+    
+    if (this.y > canvas.height || this.life > this.maxLife) {
+      this.reset();
+    }
+    
+    if (this.x < 0 || this.x > canvas.width) {
+      this.speedX *= -1;
+    }
+    
+    // Subtle floating motion
+    this.x += Math.sin(this.y * 0.01) * 0.5;
+  }
+  
+  draw() {
+    const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 2);
+    gradient.addColorStop(0, `hsla(${this.hue}, 100%, 60%, ${this.opacity})`);
+    gradient.addColorStop(1, `hsla(${this.hue}, 100%, 60%, 0)`);
+    
+    ctx.fillStyle = gradient;
+    ctx.globalAlpha = this.opacity;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+// Replace old particles with premium ones
+particles.length = 0;
+for (let i = 0; i < 100; i++) {
+  particles.push(new PremiumParticle());
+}
+
+// ===== SPOTLIGHT MOUSE FOLLOW =====
+const heroSpotlight = document.getElementById('hero-spotlight');
+
+document.addEventListener('mousemove', (e) => {
+  if (heroSpotlight) {
+    const x = e.clientX;
+    const y = e.clientY;
+    heroSpotlight.style.transform = `translate(${x - 300}px, ${y - 300}px)`;
+  }
+});
+
+// ===== COSMIC DUST GENERATOR =====
+function createCosmicDust() {
+  for (let i = 0; i < 30; i++) {
+    setTimeout(() => {
+      const dust = document.createElement('div');
+      dust.className = 'cosmic-dust';
+      dust.style.left = Math.random() * window.innerWidth + 'px';
+      dust.style.bottom = '0px';
+      dust.style.setProperty('--drift', (Math.random() - 0.5) * 200 + 'px');
+      dust.style.animationDelay = Math.random() * 10 + 's';
+      document.body.appendChild(dust);
+      
+      setTimeout(() => dust.remove(), 10000);
+    }, i * 100);
+  }
+}
+
+// Generate cosmic dust periodically
+setInterval(createCosmicDust, 15000);
+createCosmicDust();
+
+// ===== INTERACTIVE GRID =====
+const interactiveGrid = document.querySelector('.interactive-grid');
+if (interactiveGrid) {
+  const gridSize = 50;
+  const cols = Math.ceil(window.innerWidth / gridSize);
+  const rows = Math.ceil(window.innerHeight / gridSize);
+  
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', j * gridSize);
+      rect.setAttribute('y', i * gridSize);
+      rect.setAttribute('width', gridSize);
+      rect.setAttribute('height', gridSize);
+      rect.classList.add('grid-cell');
+      interactiveGrid.appendChild(rect);
+      
+      rect.addEventListener('mouseenter', () => {
+        rect.classList.add('active');
+        setTimeout(() => rect.classList.remove('active'), 500);
+      });
+    }
+  }
+}
+
+// ===== RIPPLE EFFECT ON CLICK =====
+document.addEventListener('click', (e) => {
+  const ripple = document.createElement('div');
+  ripple.className = 'quantum-ripple';
+  ripple.style.left = (e.clientX - 150) + 'px';
+  ripple.style.top = (e.clientY - 150) + 'px';
+  document.body.appendChild(ripple);
+  
+  setTimeout(() => ripple.remove(), 2000);
+});
+
+// ===== MAGNETIC CURSOR EFFECT FOR BUTTONS =====
+document.querySelectorAll('.premium-button').forEach(button => {
+  button.addEventListener('mousemove', (e) => {
+    const rect = button.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    button.style.setProperty('--mouse-x', x + 'px');
+    button.style.setProperty('--mouse-y', y + 'px');
+  });
+});
+
+// ===== 3D TILT EFFECT FOR CARDS =====
+document.querySelectorAll('.card-3d').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+    
+    const inner = card.querySelector('.card-3d-inner');
+    if (inner) {
+      inner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    }
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    const inner = card.querySelector('.card-3d-inner');
+    if (inner) {
+      inner.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    }
+  });
+});
+
+// ===== SMOOTH NUMBER COUNTER ANIMATION =====
+function animateCounter(element, target, duration = 2000) {
+  const start = 0;
+  const increment = target / (duration / 16);
+  let current = start;
+  
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      element.textContent = target;
+      clearInterval(timer);
+    } else {
+      element.textContent = Math.floor(current);
+    }
+  }, 16);
+}
+
+// ===== ADVANCED SCROLL ANIMATIONS =====
+const advancedObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      
+      // Trigger counter animations
+      const counters = entry.target.querySelectorAll('[data-count]');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-count'));
+        animateCounter(counter, target);
+      });
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+});
+
+document.querySelectorAll('.scroll-fade').forEach(el => {
+  advancedObserver.observe(el);
+});
+
+// ===== NEURAL NETWORK VISUALIZATION =====
+function createNeuralNetwork(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '200');
+  svg.style.position = 'absolute';
+  svg.style.top = '0';
+  svg.style.left = '0';
+  svg.style.pointerEvents = 'none';
+  
+  // Add gradient definition
+  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+  gradient.setAttribute('id', 'neural-gradient');
+  gradient.innerHTML = `
+    <stop offset="0%" style="stop-color:#00f5ff;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+  `;
+  defs.appendChild(gradient);
+  svg.appendChild(defs);
+  
+  container.appendChild(svg);
+}
+
+// ===== PERFORMANCE MONITORING =====
+let fps = 0;
+let lastTime = performance.now();
+let frames = 0;
+
+function calculateFPS() {
+  frames++;
+  const currentTime = performance.now();
+  if (currentTime >= lastTime + 1000) {
+    fps = frames;
+    frames = 0;
+    lastTime = currentTime;
+  }
+  requestAnimationFrame(calculateFPS);
+}
+calculateFPS();
+
+// ===== PREMIUM LOADING STATES =====
+window.addEventListener('load', () => {
+  document.body.classList.add('loaded');
+  
+  // Trigger initial animations
+  setTimeout(() => {
+    document.querySelectorAll('.quantum-orb').forEach((orb, index) => {
+      setTimeout(() => {
+        orb.classList.add('visible');
+      }, index * 200);
+    });
+  }, 300);
+});
+
+console.log('%c🌟 PREMIUM QUANTUM EXPERIENCE LOADED 🌟', 'color: #00f5ff; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px #00f5ff;');
+console.log('%c✨ Ultra-modern design activated', 'color: #a855f7; font-size: 14px;');
+console.log('%c🎨 Advanced graphics systems online', 'color: #00f5ff; font-size: 14px;');
+console.log('%c🚀 Performance optimized', 'color: #a855f7; font-size: 14px;');
+
+// ===== SCROLL ANIMATIONS =====
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.scroll-fade').forEach(el => {
+  fadeObserver.observe(el);
+});
+
+// Quantum orbs
+const orbObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.quantum-orb').forEach(el => {
+  orbObserver.observe(el);
+});
+
+// Circuit lines
+const circuitObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.circuit-line').forEach(line => {
+        line.classList.add('animate');
+      });
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('section').forEach(el => {
+  circuitObserver.observe(el);
+});
+
+// Parallax effect on scroll
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const orbs = document.querySelectorAll('.quantum-orb');
+  
+  orbs.forEach((orb, index) => {
+    const speed = (index + 1) * 0.3;
+    orb.style.transform = `translate(-50%, -50%) translateY(${scrolled * speed}px)`;
+  });
+});
+
+// Initial trigger for hero section
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('#orb-1, #orb-2').forEach(orb => {
+      orb.classList.add('visible');
+    });
+  }, 300);
+});
+
+// ===== QUANTUM QUBIT SYSTEM =====
+const qubit = document.getElementById('quantum-qubit');
+const qubitLabel = document.getElementById('qubit-label');
+const endZone = document.getElementById('end-zone');
+const endZoneContent = document.querySelector('.end-zone-content');
+
+let isDragging = false;
+let isInEndZone = false;
+let dragOffset = { x: 0, y: 0 };
+
+// Position qubit initially
+function positionQubit() {
+  const scrollPercent = window.pageYOffset / (document.body.scrollHeight - window.innerHeight);
+  const endZoneTop = endZone.offsetTop;
+  const endZoneBottom = endZone.offsetTop + endZone.offsetHeight;
+  const currentScroll = window.pageYOffset + window.innerHeight / 2;
+  
+  // Check if we're in the end zone
+  if (currentScroll >= endZoneTop && currentScroll <= endZoneBottom) {
+    if (!isInEndZone) {
+      isInEndZone = true;
+      qubit.classList.add('draggable', 'clickable');
+      qubitLabel.textContent = '1';
+      endZoneContent.classList.add('visible');
+    }
+  } else {
+    if (isInEndZone && !isDragging) {
+      isInEndZone = false;
+      qubit.classList.remove('draggable', 'clickable');
+    }
+    
+    // Normal scroll behavior - move qubit down the page
+    if (!isDragging) {
+      const windowHeight = window.innerHeight;
+      const yPos = (scrollPercent * (document.body.scrollHeight - windowHeight)) + windowHeight / 2;
+      qubit.style.left = '50%';
+      qubit.style.top = yPos + 'px';
+      qubit.style.transform = 'translate(-50%, -50%)';
+      
+      // Transition from 0 to 1 as we scroll
+      if (scrollPercent < 0.5) {
+        qubitLabel.textContent = '0';
+      } else if (scrollPercent < 0.9) {
+        // Show quantum superposition
+        const states = ['0', '1', '⟨0|1⟩', '√½'];
+        qubitLabel.textContent = states[Math.floor(Math.random() * states.length)];
+      } else {
+        qubitLabel.textContent = '1';
+      }
+    }
+  }
+}
+
+// Mouse/Touch drag functionality
+qubit.addEventListener('mousedown', startDrag);
+qubit.addEventListener('touchstart', startDrag);
+
+function startDrag(e) {
+  if (!isInEndZone) return;
+  
+  isDragging = true;
+  qubit.classList.add('dragging');
+  qubit.classList.remove('clickable');
+  
+  const rect = qubit.getBoundingClientRect();
+  const clientX = e.clientX || e.touches[0].clientX;
+  const clientY = e.clientY || e.touches[0].clientY;
+  
+  dragOffset.x = clientX - rect.left - rect.width / 2;
+  dragOffset.y = clientY - rect.top - rect.height / 2;
+  
+  e.preventDefault();
+}
+
+document.addEventListener('mousemove', drag);
+document.addEventListener('touchmove', drag);
+
+function drag(e) {
+  if (!isDragging) return;
+  
+  const clientX = e.clientX || e.touches[0].clientX;
+  const clientY = e.clientY || e.touches[0].clientY;
+  
+  qubit.style.left = (clientX - dragOffset.x) + 'px';
+  qubit.style.top = (clientY - dragOffset.y) + 'px';
+  qubit.style.transform = 'translate(-50%, -50%)';
+  
+  e.preventDefault();
+}
+
+document.addEventListener('mouseup', stopDrag);
+document.addEventListener('touchend', stopDrag);
+
+function stopDrag() {
+  if (isDragging) {
+    isDragging = false;
+    qubit.classList.remove('dragging');
+    if (isInEndZone) {
+      qubit.classList.add('clickable');
+    }
+  }
+}
+
+// Click to open Claude AI
+qubit.addEventListener('click', (e) => {
+  if (!isDragging && isInEndZone) {
+    // Create a pulsing effect
+    qubit.style.transform = 'translate(-50%, -50%) scale(1.2)';
+    setTimeout(() => {
+      qubit.style.transform = 'translate(-50%, -50%) scale(1)';
+    }, 200);
+    
+    // Open Claude AI in new tab
+    window.open('https://claude.ai', '_blank');
+    
+    // Show notification
+    showNotification();
+  }
+});
+
+function showNotification() {
+  const notification = document.createElement('div');
+  notification.textContent = '🔮 Opening Claude AI...';
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #22d3ee, #a855f7);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    z-index: 10000;
+    box-shadow: 0 10px 40px rgba(34, 211, 238, 0.4);
+    animation: slideIn 0.3s ease;
+  `;
+  
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.style.animation = 'slideOut 0.3s ease';
+    setTimeout(() => notification.remove(), 300);
+  }, 2000);
+}
+
+// Add animation keyframes
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideIn {
+    from { transform: translateX(400px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(400px); opacity: 0; }
+  }
+`;
+document.head.appendChild(style);
+
+// Update qubit position on scroll
+window.addEventListener('scroll', positionQubit);
+window.addEventListener('resize', positionQubit);
+
+// Initial position
+positionQubit();
+
+// ===== INNOVATIVE FEATURES =====
+
+// 1. QUANTUM TUNNEL EFFECT - Particles attracted to qubit
+const tunnelCanvas = document.getElementById('quantum-tunnel');
+const tunnelCtx = tunnelCanvas.getContext('2d');
+
+function resizeTunnelCanvas() {
+  tunnelCanvas.width = window.innerWidth;
+  tunnelCanvas.height = window.innerHeight;
+}
+resizeTunnelCanvas();
+window.addEventListener('resize', resizeTunnelCanvas);
+
+const tunnelParticles = [];
+let tunnelActive = false;
+
+class TunnelParticle {
+  constructor() {
+    this.x = Math.random() * tunnelCanvas.width;
+    this.y = Math.random() * tunnelCanvas.height;
+    this.size = Math.random() * 3 + 1;
+    this.speedX = (Math.random() - 0.5) * 2;
+    this.speedY = (Math.random() - 0.5) * 2;
+    this.color = Math.random() > 0.5 ? '#22d3ee' : '#a855f7';
+  }
+  
+  update(qubitX, qubitY) {
+    // Attract to qubit
+    const dx = qubitX - this.x;
+    const dy = qubitY - this.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    
+    if (distance < 300) {
+      this.speedX += dx / distance * 0.5;
+      this.speedY += dy / distance * 0.5;
+    }
+    
+    this.x += this.speedX;
+    this.y += this.speedY;
+    
+    // Damping
+    this.speedX *= 0.98;
+    this.speedY *= 0.98;
+    
+    // Reset if too far
+    if (distance < 20) {
+      this.x = Math.random() * tunnelCanvas.width;
+      this.y = Math.random() * tunnelCanvas.height;
+      this.speedX = (Math.random() - 0.5) * 2;
+      this.speedY = (Math.random() - 0.5) * 2;
+    }
+  }
+  
+  draw() {
+    tunnelCtx.fillStyle = this.color;
+    tunnelCtx.globalAlpha = 0.6;
+    tunnelCtx.beginPath();
+    tunnelCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    tunnelCtx.fill();
+  }
+}
+
+for (let i = 0; i < 50; i++) {
+  tunnelParticles.push(new TunnelParticle());
+}
+
+function animateTunnel() {
+  if (tunnelActive) {
+    tunnelCtx.clearRect(0, 0, tunnelCanvas.width, tunnelCanvas.height);
+    
+    const rect = qubit.getBoundingClientRect();
+    const qubitX = rect.left + rect.width / 2;
+    const qubitY = rect.top + rect.height / 2;
+    
+    tunnelParticles.forEach(p => {
+      p.update(qubitX, qubitY);
+      p.draw();
+    });
+  }
+  requestAnimationFrame(animateTunnel);
+}
+animateTunnel();
+
+// 2. QUBIT TRAIL EFFECT
+let trailCounter = 0;
+function createTrail(x, y) {
+  if (trailCounter % 3 === 0) { // Every 3 frames
+    const trail = document.createElement('div');
+    trail.className = 'qubit-trail';
+    trail.style.left = x + 'px';
+    trail.style.top = y + 'px';
+    document.body.appendChild(trail);
+    setTimeout(() => trail.remove(), 1000);
+  }
+  trailCounter++;
+}
+
+// 3. CONSTELLATION MODE - Easter Egg (Press 'C' key)
+let constellationMode = false;
+const constellationSvg = document.getElementById('constellation-svg');
+
+document.addEventListener('keydown', (e) => {
+  if (e.key.toLowerCase() === 'c') {
+    constellationMode = !constellationMode;
+    
+    if (constellationMode) {
+      document.body.classList.add('constellation-mode');
+      createConstellation();
+      showAchievement('🌟 Constellation Mode Activated!');
+    } else {
+      document.body.classList.remove('constellation-mode');
+      constellationSvg.innerHTML = '';
+    }
+  }
+  
+  // Secret: Press 'Q' for quantum tunnel
+  if (e.key.toLowerCase() === 'q') {
+    tunnelActive = !tunnelActive;
+    tunnelCanvas.classList.toggle('active');
+    showAchievement(tunnelActive ? '🌀 Quantum Tunnel Opened!' : '🌀 Quantum Tunnel Closed');
+  }
+  
+  // Secret: Press 'P' for portal
+  if (e.key.toLowerCase() === 'p' && isInEndZone) {
+    const portal = document.getElementById('quantum-portal');
+    portal.classList.toggle('active');
+    const rect = qubit.getBoundingClientRect();
+    portal.style.left = (rect.left + rect.width / 2) + 'px';
+    portal.style.top = (rect.top + rect.height / 2) + 'px';
+    showAchievement('🌌 Quantum Portal Summoned!');
+  }
+});
+
+function createConstellation() {
+  constellationSvg.innerHTML = '';
+  const stars = [];
+  
+  // Get all glass card elements as constellation points
+  document.querySelectorAll('.glass').forEach(card => {
+    const rect = card.getBoundingClientRect();
+    stars.push({
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2 + window.pageYOffset
+    });
+  });
+  
+  // Connect nearby stars
+  for (let i = 0; i < stars.length; i++) {
+    for (let j = i + 1; j < stars.length; j++) {
+      const dx = stars[i].x - stars[j].x;
+      const dy = stars[i].y - stars[j].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < 400) {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', stars[i].x);
+        line.setAttribute('y1', stars[i].y);
+        line.setAttribute('x2', stars[j].x);
+        line.setAttribute('y2', stars[j].y);
+        line.classList.add('constellation-line');
+        constellationSvg.appendChild(line);
+      }
+    }
+  }
+}
+
+// 4. ACHIEVEMENTS SYSTEM
+const achievements = {
+  firstScroll: false,
+  reachedEnd: false,
+  draggedQubit: false,
+  clickedQubit: false,
+  constellationFound: false,
+  tunnelFound: false
+};
+
+function showAchievement(text) {
+  const achievement = document.createElement('div');
+  achievement.className = 'achievement';
+  achievement.textContent = text;
+  document.body.appendChild(achievement);
+  
+  setTimeout(() => achievement.classList.add('show'), 100);
+  setTimeout(() => {
+    achievement.classList.remove('show');
+    setTimeout(() => achievement.remove(), 500);
+  }, 3000);
+}
+
+// Track achievements
+let scrolled = false;
+window.addEventListener('scroll', () => {
+  if (!scrolled && window.pageYOffset > 100) {
+    scrolled = true;
+    if (!achievements.firstScroll) {
+      achievements.firstScroll = true;
+      showAchievement('🚀 Journey Begun!');
+    }
+  }
+});
+
+// 5. REALITY GLITCH EFFECT (Random)
+setInterval(() => {
+  if (Math.random() > 0.95) {
+    document.body.classList.add('glitch-effect');
+    setTimeout(() => document.body.classList.remove('glitch-effect'), 300);
+  }
+}, 5000);
+
+// 6. ENTANGLED PARTICLES - Follow qubit at distance
+const entangledParticles = [];
+
+for (let i = 0; i < 3; i++) {
+  const particle = document.createElement('div');
+  particle.className = 'entangled-particle';
+  particle.style.background = i % 2 === 0 ? '#22d3ee' : '#a855f7';
+  document.body.appendChild(particle);
+  entangledParticles.push({
+    element: particle,
+    angle: (i * 120) * Math.PI / 180,
+    distance: 80 + (i * 20)
+  });
+}
+
+function updateEntangledParticles() {
+  const rect = qubit.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  
+  entangledParticles.forEach((p, i) => {
+    p.angle += 0.02;
+    const x = centerX + Math.cos(p.angle) * p.distance;
+    const y = centerY + Math.sin(p.angle) * p.distance;
+    p.element.style.left = x + 'px';
+    p.element.style.top = y + 'px';
+  });
+  
+  requestAnimationFrame(updateEntangledParticles);
+}
+updateEntangledParticles();
+
+// 7. DOUBLE CLICK EASTER EGG
+let clickCount = 0;
+let clickTimer = null;
+
+qubit.addEventListener('click', () => {
+  clickCount++;
+  
+  if (clickTimer) clearTimeout(clickTimer);
+  
+  clickTimer = setTimeout(() => {
+    if (clickCount === 3 && isInEndZone) {
+      // Triple click easter egg
+      showAchievement('🎉 Triple Click Master! Reality Bending...');
+      
+      // Create reality warp effect
+      document.body.style.filter = 'hue-rotate(180deg)';
+      setTimeout(() => {
+        document.body.style.filter = 'hue-rotate(0deg)';
+      }, 2000);
+    }
+    clickCount = 0;
+  }, 500);
+});
+
+// 8. MOUSE PROXIMITY EFFECT
+document.addEventListener('mousemove', (e) => {
+  const rect = qubit.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  
+  const dx = e.clientX - centerX;
+  const dy = e.clientY - centerY;
+  const distance = Math.sqrt(dx * dx + dy * dy);
+  
+  if (distance < 200 && !isDragging) {
+    const scale = 1 + (200 - distance) / 1000;
+    qubit.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    
+    // Create trail when mouse is near
+    if (Math.random() > 0.7) {
+      createTrail(centerX, centerY);
+    }
+  }
+});
+
+// Enhanced drag with trail
+const originalDrag = drag;
+drag = function(e) {
+  originalDrag(e);
+  
+  if (isDragging) {
+    const rect = qubit.getBoundingClientRect();
+    createTrail(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    
+    if (!achievements.draggedQubit) {
+      achievements.draggedQubit = true;
+      showAchievement('🎮 Quantum Control Mastered!');
+    }
+  }
+};
+
+// Enhanced click
+qubit.addEventListener('click', () => {
+  if (!isDragging && isInEndZone && !achievements.clickedQubit) {
+    achievements.clickedQubit = true;
+    showAchievement('🔮 Portal to AI Opened!');
+  }
+});
+
+// Detect when end zone is reached
+const endZoneObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !achievements.reachedEnd) {
+      achievements.reachedEnd = true;
+      showAchievement('🏁 Quantum State |1⟩ Achieved!');
+    }
+  });
+}, { threshold: 0.5 });
+
+endZoneObserver.observe(endZone);
+
+// Show initial hint
+setTimeout(() => {
+  showAchievement('💡 Tip: Try pressing C, Q, or P for secrets!');
+}, 5000);
+
+console.log('%c🌌 QUANTUM SECRETS 🌌', 'color: #22d3ee; font-size: 20px; font-weight: bold;');
+console.log('%cPress C for Constellation Mode', 'color: #a855f7; font-size: 14px;');
+console.log('%cPress Q for Quantum Tunnel', 'color: #22d3ee; font-size: 14px;');
+console.log('%cPress P for Portal (at the end)', 'color: #a855f7; font-size: 14px;');
+console.log('%cTriple-click the qubit for reality warp!', 'color: #22d3ee; font-size: 14px;');
+console.log('%cPress M for Matrix Rain', 'color: #22d3ee; font-size: 14px;');
+console.log('%cPress W for Wormhole', 'color: #a855f7; font-size: 14px;');
+console.log('%cPress S for Scan Lines', 'color: #22d3ee; font-size: 14px;');
+
+// ===== ADVANCED GRAPHICAL FEATURES =====
+
+// 1. QUANTUM FIELD VISUALIZATION
+const fieldCanvas = document.getElementById('quantum-field');
+const fieldCtx = fieldCanvas.getContext('2d');
+
+function resizeFieldCanvas() {
+  fieldCanvas.width = window.innerWidth;
+  fieldCanvas.height = document.body.scrollHeight;
+}
+resizeFieldCanvas();
+
+const fieldPoints = [];
+const gridSize = 50;
+
+for (let x = 0; x < fieldCanvas.width; x += gridSize) {
+  for (let y = 0; y < fieldCanvas.height; y += gridSize) {
+    fieldPoints.push({
+      x: x,
+      y: y,
+      baseX: x,
+      baseY: y,
+      vx: 0,
+      vy: 0
+    });
+  }
+}
+
+function animateField() {
+  fieldCtx.clearRect(0, 0, fieldCanvas.width, fieldCanvas.height);
+  
+  const rect = qubit.getBoundingClientRect();
+  const qubitX = rect.left + rect.width / 2;
+  const qubitY = rect.top + rect.height / 2 + window.pageYOffset;
+  
+  fieldPoints.forEach(point => {
+    const dx = qubitX - point.x;
+    const dy = qubitY - point.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    
+    if (distance < 300) {
+      const force = (300 - distance) / 300;
+      point.vx += (dx / distance) * force * 0.5;
+      point.vy += (dy / distance) * force * 0.5;
+    }
+    
+    point.x += point.vx;
+    point.y += point.vy;
+    
+    // Spring back to base position
+    point.vx += (point.baseX - point.x) * 0.02;
+    point.vy += (point.baseY - point.y) * 0.02;
+    
+    // Damping
+    point.vx *= 0.95;
+    point.vy *= 0.95;
+    
+    // Draw point
+    fieldCtx.fillStyle = '#22d3ee';
+    fieldCtx.globalAlpha = 0.4;
+    fieldCtx.beginPath();
+    fieldCtx.arc(point.x, point.y - window.pageYOffset, 2, 0, Math.PI * 2);
+    fieldCtx.fill();
+  });
+  
+  // Connect nearby points
+  for (let i = 0; i < fieldPoints.length; i++) {
+    for (let j = i + 1; j < fieldPoints.length; j++) {
+      const dx = fieldPoints[i].x - fieldPoints[j].x;
+      const dy = fieldPoints[i].y - fieldPoints[j].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < gridSize * 1.5) {
+        fieldCtx.strokeStyle = '#a855f7';
+        fieldCtx.globalAlpha = (1 - distance / (gridSize * 1.5)) * 0.2;
+        fieldCtx.lineWidth = 1;
+        fieldCtx.beginPath();
+        fieldCtx.moveTo(fieldPoints[i].x, fieldPoints[i].y - window.pageYOffset);
+        fieldCtx.lineTo(fieldPoints[j].x, fieldPoints[j].y - window.pageYOffset);
+        fieldCtx.stroke();
+      }
+    }
+  }
+  
+  requestAnimationFrame(animateField);
+}
+animateField();
+
+// 2. MATRIX RAIN EFFECT
+const matrixCanvas = document.getElementById('matrix-rain');
+const matrixCtx = matrixCanvas.getContext('2d');
+
+function resizeMatrixCanvas() {
+  matrixCanvas.width = window.innerWidth;
+  matrixCanvas.height = window.innerHeight;
+}
+resizeMatrixCanvas();
+
+const matrixChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+const fontSize = 14;
+const columns = matrixCanvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+let matrixActive = false;
+
+function drawMatrix() {
+  if (!matrixActive) return;
+  
+  matrixCtx.fillStyle = 'rgba(5, 7, 10, 0.05)';
+  matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+  
+  matrixCtx.fillStyle = '#22d3ee';
+  matrixCtx.font = fontSize + 'px monospace';
+  
+  for (let i = 0; i < drops.length; i++) {
+    const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+    matrixCtx.fillText(text, i * fontSize, drops[i] * fontSize);
+    
+    if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
+  
+  requestAnimationFrame(drawMatrix);
+}
+
+// 3. WORMHOLE EFFECT
+const wormholeCanvas = document.getElementById('wormhole');
+const wormholeCtx = wormholeCanvas.getContext('2d');
+
+function resizeWormholeCanvas() {
+  wormholeCanvas.width = window.innerWidth;
+  wormholeCanvas.height = window.innerHeight;
+}
+resizeWormholeCanvas();
+
+let wormholeActive = false;
+let wormholeTime = 0;
+
+function drawWormhole() {
+  if (!wormholeActive) return;
+  
+  wormholeCtx.fillStyle = 'rgba(5, 7, 10, 0.1)';
+  wormholeCtx.fillRect(0, 0, wormholeCanvas.width, wormholeCanvas.height);
+  
+  const centerX = wormholeCanvas.width / 2;
+  const centerY = wormholeCanvas.height / 2;
+  
+  for (let i = 0; i < 8; i++) {
+    const radius = 50 + i * 40 + Math.sin(wormholeTime * 0.02 + i) * 20;
+    const gradient = wormholeCtx.createRadialGradient(centerX, centerY, radius - 20, centerX, centerY, radius);
+    
+    if (i % 2 === 0) {
+      gradient.addColorStop(0, 'rgba(34, 211, 238, 0)');
+      gradient.addColorStop(0.5, 'rgba(34, 211, 238, 0.3)');
+      gradient.addColorStop(1, 'rgba(34, 211, 238, 0)');
+    } else {
+      gradient.addColorStop(0, 'rgba(168, 85, 247, 0)');
+      gradient.addColorStop(0.5, 'rgba(168, 85, 247, 0.3)');
+      gradient.addColorStop(1, 'rgba(168, 85, 247, 0)');
+    }
+    
+    wormholeCtx.strokeStyle = gradient;
+    wormholeCtx.lineWidth = 3;
+    wormholeCtx.beginPath();
+    wormholeCtx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+    wormholeCtx.stroke();
+  }
+  
+  wormholeTime++;
+  requestAnimationFrame(drawWormhole);
+}
+
+// 4. 3D PARALLAX EFFECT
+document.addEventListener('mousemove', (e) => {
+  const mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+  const mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  
+  document.querySelectorAll('.parallax-layer').forEach(layer => {
+    const depth = parseFloat(layer.getAttribute('data-depth'));
+    const moveX = mouseX * depth * 50;
+    const moveY = mouseY * depth * 50;
+    layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  });
+});
+
+// Add some visual elements to parallax layers
+const parallax1 = document.getElementById('parallax-1');
+const parallax2 = document.getElementById('parallax-2');
+const parallax3 = document.getElementById('parallax-3');
+
+for (let i = 0; i < 5; i++) {
+  const circle = document.createElement('div');
+  circle.style.cssText = `
+    position: absolute;
+    width: ${Math.random() * 100 + 50}px;
+    height: ${Math.random() * 100 + 50}px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.1), transparent);
+    top: ${Math.random() * 100}%;
+    left: ${Math.random() * 100}%;
+  `;
+  parallax1.appendChild(circle);
+}
+
+for (let i = 0; i < 3; i++) {
+  const square = document.createElement('div');
+  square.style.cssText = `
+    position: absolute;
+    width: ${Math.random() * 80 + 40}px;
+    height: ${Math.random() * 80 + 40}px;
+    border: 2px solid rgba(168, 85, 247, 0.2);
+    top: ${Math.random() * 100}%;
+    left: ${Math.random() * 100}%;
+    transform: rotate(${Math.random() * 45}deg);
+  `;
+  parallax2.appendChild(square);
+}
+
+// 5. QUBIT BACKGROUND SHADOW
+const qubitBg = document.getElementById('qubit-background');
+
+function updateQubitBackground() {
+  const rect = qubit.getBoundingClientRect();
+  qubitBg.style.left = rect.left + 'px';
+  qubitBg.style.top = rect.top + 'px';
+  
+  requestAnimationFrame(updateQubitBackground);
+}
+updateQubitBackground();
+
+// 6. PARTICLE EXPLOSION ON CLICK
+function createExplosion(x, y) {
+  for (let i = 0; i < 30; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'explosion-particle';
+    
+    const angle = (Math.PI * 2 * i) / 30;
+    const velocity = 100 + Math.random() * 100;
+    const tx = Math.cos(angle) * velocity;
+    const ty = Math.sin(angle) * velocity;
+    
+    particle.style.cssText = `
+      left: ${x}px;
+      top: ${y}px;
+      background: ${i % 2 === 0 ? '#22d3ee' : '#a855f7'};
+      --tx: ${tx}px;
+      --ty: ${ty}px;
+    `;
+    
+    document.body.appendChild(particle);
+    setTimeout(() => particle.remove(), 1000);
+  }
+}
+
+// Enhanced qubit click with explosion
+qubit.addEventListener('click', (e) => {
+  const rect = qubit.getBoundingClientRect();
+  createExplosion(rect.left + rect.width / 2, rect.top + rect.height / 2);
+});
+
+// 7. KEYBOARD SHORTCUTS FOR NEW EFFECTS
+document.addEventListener('keydown', (e) => {
+  // M for Matrix Rain
+  if (e.key.toLowerCase() === 'm') {
+    matrixActive = !matrixActive;
+    matrixCanvas.classList.toggle('active');
+    if (matrixActive) {
+      drawMatrix();
+      showAchievement('💚 Matrix Mode Activated!');
+    } else {
+      showAchievement('💚 Matrix Mode Deactivated');
+    }
+  }
+  
+  // W for Wormhole
+  if (e.key.toLowerCase() === 'w') {
+    wormholeActive = !wormholeActive;
+    wormholeCanvas.classList.toggle('active');
+    if (wormholeActive) {
+      drawWormhole();
+      showAchievement('🌀 Wormhole Opened!');
+    } else {
+      showAchievement('🌀 Wormhole Closed');
+    }
+  }
+  
+  // S for Scan Lines
+  if (e.key.toLowerCase() === 's') {
+    const scanLines = document.querySelector('.scan-lines');
+    scanLines.classList.toggle('active');
+    showAchievement(scanLines.classList.contains('active') ? '📺 Scan Lines Active!' : '📺 Scan Lines Off');
+  }
+  
+  // E for Explosion at qubit
+  if (e.key.toLowerCase() === 'e') {
+    const rect = qubit.getBoundingClientRect();
+    createExplosion(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    showAchievement('💥 Quantum Explosion!');
+  }
+  
+  // R for Rainbow mode
+  if (e.key.toLowerCase() === 'r') {
+    document.body.style.animation = document.body.style.animation ? '' : 'rainbow-cycle 10s linear infinite';
+    showAchievement('🌈 Rainbow Reality!');
+  }
+});
+
+// Rainbow animation
+const rainbowStyle = document.createElement('style');
+rainbowStyle.textContent = `
+  @keyframes rainbow-cycle {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+`;
+document.head.appendChild(rainbowStyle);
+
+// 8. SCROLL-TRIGGERED EFFECTS
+let lastScrollY = 0;
+window.addEventListener('scroll', () => {
+  const currentScrollY = window.pageYOffset;
+  const scrollSpeed = Math.abs(currentScrollY - lastScrollY);
+  
+  // Create speed trails
+  if (scrollSpeed > 5) {
+    const rect = qubit.getBoundingClientRect();
+    for (let i = 0; i < Math.min(scrollSpeed / 10, 5); i++) {
+      setTimeout(() => {
+        createTrail(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      }, i * 50);
+    }
+  }
+  
+  lastScrollY = currentScrollY;
+});
+
+// 9. AUTO-DEMO MODE (Easter Egg)
+let demoMode = false;
+let demoInterval;
+
+document.addEventListener('keydown', (e) => {
+  if (e.key.toLowerCase() === 'd') {
+    demoMode = !demoMode;
+    
+    if (demoMode) {
+      showAchievement('🎬 Demo Mode Started!');
+      let effects = ['q', 'c', 'm', 'w', 's'];
+      let index = 0;
+      
+      demoInterval = setInterval(() => {
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: effects[index] }));
+        index = (index + 1) % effects.length;
+      }, 3000);
+    } else {
+      showAchievement('🎬 Demo Mode Stopped');
+      clearInterval(demoInterval);
+    }
+  }
+});
+
+// 10. ENHANCED CONSOLE MESSAGE
+console.log('%c╔══════════════════════════════════════╗', 'color: #22d3ee; font-weight: bold;');
+console.log('%c║   QUANTUM GRAPHICS SYSTEM LOADED   ║', 'color: #a855f7; font-weight: bold;');
+console.log('%c╚══════════════════════════════════════╝', 'color: #22d3ee; font-weight: bold;');
+console.log('%c🎨 NEW EFFECTS:', 'color: #22d3ee; font-size: 16px; font-weight: bold;');
+console.log('%c  M = Matrix Rain', 'color: #a855f7;');
+console.log('%c  W = Wormhole', 'color: #22d3ee;');
+console.log('%c  S = Scan Lines', 'color: #a855f7;');
+console.log('%c  E = Explosion', 'color: #22d3ee;');
+console.log('%c  R = Rainbow Mode', 'color: #a855f7;');
+console.log('%c  D = Auto Demo', 'color: #22d3ee;');
+
+// Enhanced hints
+setTimeout(() => {
+  showAchievement('💡 Press D for auto-demo of all effects!');
+}, 10000);
+</script>
 
 </body>
 </html>
