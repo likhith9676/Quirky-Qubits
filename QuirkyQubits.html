@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuirkyQubits | Enterprise Quantum Compute</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #05070a; }
+    .glass { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+    .gradient-text { background: linear-gradient(90deg, #22d3ee, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  </style>
+</head>
+<body class="text-gray-200">
+
+<!-- NAV -->
+<nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+  <div class="flex items-center gap-3">
+    <!-- Logo -->
+    <img src="/logo.png" alt="QuirkyQubits Logo" class="h-9 w-9 object-contain" />
+    <span class="text-2xl font-bold gradient-text">QuirkyQubits Cloud</span>
+  </div>
+  <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+    <a href="#platform" class="hover:text-cyan-400">Platform</a>
+    <a href="#architecture" class="hover:text-cyan-400">Architecture</a>
+    <a href="#security" class="hover:text-cyan-400">Security</a>
+    <a href="#pricing" class="hover:text-cyan-400">Pricing</a>
+    <button class="bg-cyan-500 text-black px-5 py-2 rounded-md font-semibold">Console</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="max-w-7xl mx-auto px-6 py-32 grid md:grid-cols-2 gap-16 items-center">
+  <div>
+    <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+      Enterprise‑grade <span class="gradient-text">Quantum Compute</span>, delivered as Cloud Infrastructure
+    </h1>
+    <p class="text-gray-400 text-lg mb-8">
+      Run hybrid quantum–classical workloads using managed simulators and hardware backends with deterministic scheduling, observability, and security controls.
+    </p>
+    <div class="flex gap-4">
+      <button class="bg-white text-black px-8 py-4 rounded-md font-semibold">Start Free Tier</button>
+      <button class="glass px-8 py-4 rounded-md font-semibold">Read Architecture</button>
+    </div>
+  </div>
+  <div class="glass rounded-2xl p-8 font-mono text-sm">
+<pre class="text-gray-300"># Submit a circuit to QuirkyQubits Cloud
+from quirkyqubits import Circuit, cloud
+
+c = Circuit(qubits=4)
+c.entangle(0,1)
+c.entangle(2,3)
+
+job = cloud.submit(
+    circuit=c,
+    backend="simulator_xlarge",
+    shots=8192
+)
+
+print(job.result())</pre>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section id="platform" class="max-w-7xl mx-auto px-6 py-28">
+  <h2 class="text-4xl font-bold mb-16">The Platform</h2>
+  <div class="grid md:grid-cols-3 gap-10">
+    <div class="glass p-8 rounded-xl">
+      <h3 class="text-xl font-semibold mb-3">Managed Quantum Backends</h3>
+      <p class="text-gray-400">High‑fidelity simulators and calibrated QPU access with SLA‑backed availability.</p>
+    </div>
+    <div class="glass p-8 rounded-xl">
+      <h3 class="text-xl font-semibold mb-3">Hybrid Execution Engine</h3>
+      <p class="text-gray-400">Orchestrate classical preprocessing and quantum execution within a single workflow.</p>
+    </div>
+    <div class="glass p-8 rounded-xl">
+      <h3 class="text-xl font-semibold mb-3">Observability & Control</h3>
+      <p class="text-gray-400">Job traces, queue latency metrics, deterministic retries, and audit logs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture" class="bg-black/40 border-y border-gray-800 py-28">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl font-bold mb-16">Reference Architecture</h2>
+    <div class="grid md:grid-cols-4 gap-8">
+      <div class="glass p-6 rounded-xl">
+        <h4 class="font-semibold mb-2">Client Layer</h4>
+        <p class="text-sm text-gray-400">Python / JS SDKs, REST & gRPC APIs, circuit validation.</p>
+      </div>
+      <div class="glass p-6 rounded-xl">
+        <h4 class="font-semibold mb-2">API & Auth</h4>
+        <p class="text-sm text-gray-400">OAuth2, workload isolation, rate‑limiting, request signing.</p>
+      </div>
+      <div class="glass p-6 rounded-xl">
+        <h4 class="font-semibold mb-2">Control Plane</h4>
+        <p class="text-sm text-gray-400">Compilation, transpilation, scheduling, noise mitigation.</p>
+      </div>
+      <div class="glass p-6 rounded-xl">
+        <h4 class="font-semibold mb-2">Execution Plane</h4>
+        <p class="text-sm text-gray-400">Simulators, QPU providers, adaptive fallback routing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section id="security" class="max-w-7xl mx-auto px-6 py-28">
+  <h2 class="text-4xl font-bold mb-16">Security & Isolation</h2>
+  <div class="grid md:grid-cols-3 gap-10">
+    <div class="glass p-8 rounded-xl">
+      <h3 class="font-semibold mb-2">Tenant Isolation</h3>
+      <p class="text-gray-400">Dedicated job queues, per‑tenant encryption keys, isolated runtime contexts.</p>
+    </div>
+    <div class="glass p-8 rounded-xl">
+      <h3 class="font-semibold mb-2">Compliance‑Ready</h3>
+      <p class="text-gray-400">SOC‑aligned controls, full audit logging, exportable execution traces.</p>
+    </div>
+    <div class="glass p-8 rounded-xl">
+      <h3 class="font-semibold mb-2">Secure Networking</h3>
+      <p class="text-gray-400">Private endpoints, VPC peering, zero‑trust service boundaries.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EARLY ACCESS -->
+<section class="bg-black/60 border-t border-gray-800 py-28">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-4xl font-bold mb-6">Launching Soon</h2>
+    <p class="text-gray-400 text-lg mb-10">
+      QuirkyQubits Cloud is currently in private development. Register now to get notified at launch and secure an <span class="text-cyan-400 font-semibold">exclusive 30% lifetime discount</span> on all paid plans.
+    </p>
+
+    <div class="glass p-8 rounded-xl max-w-xl mx-auto">
+      <form class="flex flex-col md:flex-row gap-4">
+        <input
+          type="email"
+          placeholder="Enter your work email"
+          class="w-full px-5 py-4 rounded-md bg-black/60 border border-gray-700 text-gray-200 focus:outline-none focus:border-cyan-400"
+          required
+        />
+        <button
+          type="submit"
+          class="bg-cyan-500 text-black px-8 py-4 rounded-md font-semibold hover:bg-cyan-400 transition"
+        >
+          Join Early Access
+        </button>
+      </form>
+      <p class="text-xs text-gray-500 mt-4">
+        Early-access users will receive launch updates, documentation previews, and priority onboarding.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="bg-black/40 border-t border-gray-800 py-28">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl font-bold mb-16">Pricing Model</h2>
+    <div class="grid md:grid-cols-3 gap-10">
+      <div class="glass p-8 rounded-xl">
+        <h3 class="font-semibold mb-2">Free Tier</h3>
+        <p class="text-gray-400">Up to 1k simulator shots/day, shared queue.</p>
+      </div>
+      <div class="glass p-8 rounded-xl">
+        <h3 class="font-semibold mb-2">On‑Demand</h3>
+        <p class="text-gray-400">Pay‑per‑shot pricing with priority scheduling.</p>
+      </div>
+      <div class="glass p-8 rounded-xl">
+        <h3 class="font-semibold mb-2">Enterprise</h3>
+        <p class="text-gray-400">Reserved capacity, SLAs, private networking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-16 text-center text-sm text-gray-600 border-t border-gray-900">
+  © 2026 QuirkyQubits Cloud. Built for engineers.
+</footer>
+
+</body>
+</html>
